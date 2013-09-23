@@ -6,6 +6,8 @@ Bamboo is a package for Laravel version 4 that enables scaffolding for Eloquent 
 ### Installation
 * Add `"RobGordijn/Bamboo": "dev-master"` to the require section in `composer.json`.
 
+* Run `php composer.php update` on the CLI.
+
 * Add `'RobGordijn\Bamboo\BambooServiceProvider'` to the providers array in `app/config/app.php`.
 * In the `controllers` directory, create a new controller that extends the BambooController and provides an Eloquent model in the constructor.
 
