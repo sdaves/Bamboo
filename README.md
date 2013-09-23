@@ -65,17 +65,58 @@ code:
 ### Structure options
 The `getStructure` method in the Eloquent model must return an array of structures. The keys are the names of your table columns. The structure has the following options:
 
-|key|value|explanation|
-|-|-|-|
-|type|(string) string, email, password, |single line text input|
-||(string) text, textarea|textarea input|
-||(string) radios|list of radio buttons, requires 'values'|
-||(string) select|dropdown menu, requires 'values'|
-|label|(string)|String used for the label|
-|rules|(array)|Array with model rules, **not implemented yet**, use static Model::$rules meanwhile|
-|onIndex|(bool)|Display column on the index view|
-|attributes|(array)|Array with attributes used in the formbuilder|
-|values|(array)|Array with possible values for type 'radios' and 'select'|
+<table>
+<tr>
+	<th>key</th>
+	<th>value</th>
+	<th>description</th>
+</tr>
+<tr>
+	<td>type</td>
+	<td>(string) string, email, password</td>
+	<td>single line text input</td>
+</tr>
+<tr>
+	<td></td>
+	<td>(string) text, textarea</td>
+	<td>textarea input</td>
+</tr>
+<tr>
+	<td></td>
+	<td>(string) radios</td>
+	<td>list of radio buttons, requires 'values'</td>
+</tr>
+<tr>
+	<td></td>
+	<td>(string) select</td>
+	<td>dropdown menu, requires 'values'</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>(string)</td>
+	<td>String used for the label</td>
+</tr>
+<tr>
+	<td>rules</td>
+	<td>(array)</td>
+	<td>Array with model rules, **not implemented yet**, use static Model::$rules meanwhile</td>
+</tr>
+<tr>
+	<td>onIndex</td>
+	<td>(bool)</td>
+	<td>Display column on the index view</td>
+</tr>
+<tr>
+	<td>attributes</td>
+	<td>(array)</td>
+	<td>Array with attributes used in the formbuilder</td>
+</tr>
+<tr>
+	<td>values</td>
+	<td>(array)</td>
+	<td>Array with possible values for type 'radios' and 'select'</td>
+</tr>
+</table>
 
 ### Controller options
 **Records per page (index view)**
