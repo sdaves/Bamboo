@@ -60,7 +60,11 @@ code:
 
 * done; point your browser to `/blogs` to work with Bamboo.
 
+### Pitfalls
+##### mass-assignment
+Please keep in mind that the Laravel Eloquent model attributes are well protected for unwanted mass-assignment. Check the [documentation](http://laravel.com/docs/eloquent#mass-assignment) on how to set the fillable attributes. 
 
+Hint: `protected $fillable = array('column1', 'column2');` or inversed like `protected $guarded = array();`
 
 ### Structure options
 The `getStructure` method in the Eloquent model must return an array of structures. The keys are the names of your table columns. The structure has the following options:
