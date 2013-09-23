@@ -1,0 +1,25 @@
+{
+    "name": "robgordijn/bamboo",
+    "description": "Bamboo is a package for Laravel 4 that enables scaffolding for Eloquent models.",
+    "keywords": ["laravel", "scaffolding"],
+    "authors": [
+        {
+            "name": "Rob Gordijn",
+            "email": "rob@liefbierglas.nl"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "RobGordijn\\Bamboo": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
