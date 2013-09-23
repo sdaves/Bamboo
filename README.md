@@ -11,52 +11,52 @@ Bamboo is a package for Laravel version 4 that enables scaffolding for Eloquent 
 * Add `'RobGordijn\Bamboo\BambooServiceProvider'` to the providers array in `app/config/app.php`.
 * In the `controllers` directory, create a new controller that extends the BambooController and provides an Eloquent model in the constructor.
 
-code:
+```php
+<?php
+use RobGordijn\Bamboo\BambooController;
 
-	<?php
-	use RobGordijn\Bamboo\BambooController;
-
-	class BlogController extends BambooController
+class BlogController extends BambooController
+{
+	public function __construct(Blog $Model)
 	{
-		public function __construct(Blog $Model)
-		{
-			parent::__construct($Model);
-		}
+		parent::__construct($Model);
 	}
+}
+```
 
 * Create a route to that controller.
 
-code:
-
-	<?php
-	// a single route
-	Route::resource('blogs', 'BlogController');
+```php
+<?php
+// a single route
+Route::resource('blogs', 'BlogController');
 	
-	// or within in a group with a prefix
-	Route::group(array('prefix' => 'admin'), function()
-	{
-		Route::resource('blogs', 'BlogController');
-	});
+// or within in a group with a prefix
+Route::group(array('prefix' => 'admin'), function()
+{
+	Route::resource('blogs', 'BlogController');
+});
+```
 
 * The last step is to provide information about the structure of your model. This is done via a public method `getStructure` in the Eloquent model.
 
-code:
-
-	<?php
-	class Blog extends Eloquent
+```php
+<?php
+class Blog extends Eloquent
+{
+	public function getStructure()
 	{
-		public function getStructure()
-		{
-			$title = array(
-				 'type' => 'string'
-				,'onIndex' => true
-			);
-			$content = array(
-				 'type' => 'text'
-			);
-			return compact('title',  'content');
-		}
+		$title = array(
+			 'type' => 'string'
+			,'onIndex' => true
+		);
+		$content = array(
+			 'type' => 'text'
+		);
+		return compact('title',  'content');
 	}
+}
+```
 
 * done; point your browser to `/blogs` to work with Bamboo.
 
