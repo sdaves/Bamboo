@@ -368,7 +368,7 @@ class BambooController extends \BaseController
 	protected function getRules()
 	{
 		$c = get_class($this->Model);
-		return $c::$rules;
+		return isset($c::$rules) ? $c::$rules : array();
 	}
 
 	/**
