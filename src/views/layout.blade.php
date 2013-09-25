@@ -18,10 +18,10 @@
 	<div class="container">
 		<h2>{{ $title }} - {{ get_class($Model) }}</h2>
 		<ul class="nav nav-tabs">
-			<li class="active">
+			<li @if('index' === $viewName)class="active"@endif>
 				<a href="{{ URL::route($routeName.'index') }}">{{ trans($translateHint . 'bamboo.action.index') }}</a>
 			</li>
-			<li>
+			<li @if('create' === $viewName)class="active"@endif>
 				<a href="{{ URL::route($routeName.'create') }}">{{ trans($translateHint . 'bamboo.action.create') }}</a>
 			</li>
 		</ul>

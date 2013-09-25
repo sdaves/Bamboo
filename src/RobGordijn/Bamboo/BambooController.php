@@ -315,6 +315,7 @@ class BambooController extends \BaseController
 			,'viewDir' 			=> $this->viewDir
 			,'bladeLayout' 		=> $this->bladeLayout
 			,'translateHint' 	=> $this->translateHint
+			,'viewName' 		=> $view
 		);
 		$data = array_merge($default, $data);
 
