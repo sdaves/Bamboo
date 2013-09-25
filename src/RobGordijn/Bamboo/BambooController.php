@@ -9,6 +9,18 @@ class BambooController extends \BaseController
 	protected $recordsPerPage = 10;
 
 	/**
+	 * column for orderBy() on index view
+	 * @var string
+	 */
+	protected $orderByColumn = '';
+
+	/**
+	 * direction for orderBy() on index view
+	 * @var string
+	 */
+	protected $orderByDirection = 'asc';
+
+	/**
 	 * The Blade view used for the layout.
 	 * @var string
 	 */
@@ -80,9 +92,11 @@ class BambooController extends \BaseController
 	 */
 	public function index()
 	{
-		$columns 	= $this->getIndexColumns();
-		$records 	= $this->Model->paginate($this->recordsPerPage);
-		$links 		= $records->links();
+		$columns 			= $this->getIndexColumns();
+		$orderByColumn 		= empty($this->orderByColumn) ? $this->Model->getKeyName() : $this->orderByColumn;
+		$orderByDirection 	= $this->orderByDirection;
+		$records 			= $this->Model->orderBy($orderByColumn, $orderByDirection)->paginate($this->recordsPerPage);
+		$links 				= $records->links();
 
 		return $this->makeView('index', array(
 			 'columns' 	=> $columns

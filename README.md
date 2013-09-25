@@ -127,6 +127,9 @@ The `getStructure` method in the Eloquent model must return an array of structur
 
 Default: 10, specify the protected `recordsPerPage` property in the resource controller to overwrite.
 
+**Ordering records on the index view**
+Default: 'Model->getKeyName() asc', specify the protected `orderByColumn` and `orderByDirection` in the resource controller to overwrite.
+
 **Blade layout** 
 
 Every view uses a Blade layout to render. A default layout is shipped with Bamboo and uses  Bootstrap classes to look nice. Specify the protected `bladeLayout` property in the resource controller to overwrite.
@@ -149,3 +152,10 @@ Nope, as long as you register the route to the controller with `Route::resource(
 **Does Bamboo generate controllers and views like [Jeffrey Way's Laravel 4 Generators](https://github.com/JeffreyWay/Laravel-4-Generators)?**
 
 Nope, Bamboo does not generate the controllers and views for each model but reuses one controller and some views.
+
+
+### Changelog
+* 2013-09-25<br>
+added active class for the nav-tabs on the index view<br>
+added overwrites for orderByColumn (default: table key) and orderByDirection (default: asc)
+* 2013-09-23<br>initial version commit
