@@ -231,38 +231,22 @@ class BambooController extends \BaseController
 	 */
 	public static function field($column, $structure)
 	{
-		switch($structure['type'])
+		$type = $structure['type'];
+		switch($type)
 		{
-			case 'string':
-				return \Form::text($column, null, $structure['attributes']);
-				break;
-			case 'hidden':
-				return \Form::hidden($column, null, $structure['attributes']);
-				break;
-			case 'password':
-				return \Form::password($column, null, $structure['attributes']);
-				break;
-			case 'email':
-				return \Form::email($column, null, $structure['attributes']);
-				break;
-
-			case 'text':
-			case 'textarea':
-				return \Form::textarea($column, null, $structure['attributes']);
-				break;
-
-			case 'radios':
-				$html = '';
-				foreach($structure['values'] as $value => $display)
-				{
-					$html .= \Form::radio($column, $value, null, $structure['attributes']) . " " . $display . "<br>\n";
-				}
-				return $html;
-				break;
-
 			case 'select':
 				return \Form::select($column, $structure['values'], null, $structure['attributes']);
 				break;
+			case 'radios':
+				$radios = '';
+				foreach($structure['values'] as $value => $display)
+				{
+					$radios[] = \Form::radio($column, $value, null, $structure['attributes']) . " " . $display;
+				}
+				return implode("<br>\n", $radios);
+				break;
+			default:
+				return call_user_func_array(array('\Form', $type), array($column, null, $structure['attributes']));
 		}
 	}
 
