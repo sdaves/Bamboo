@@ -73,51 +73,67 @@ The `getStructure` method in the Eloquent model must return an array of structur
 <tr>
 	<th>key</th>
 	<th>value</th>
+	<th>default</th>
 	<th>description</th>
 </tr>
 <tr>
 	<td>type</td>
 	<td>(string) text, email, password, hidden</td>
+	<td>text</td>
 	<td>single line text input</td>
 </tr>
 <tr>
 	<td></td>
 	<td>(string) textarea</td>
+	<td></td>
 	<td>textarea input</td>
 </tr>
 <tr>
 	<td></td>
 	<td>(string) radios</td>
+	<td></td>
 	<td>list of radio buttons, requires 'values'</td>
 </tr>
 <tr>
 	<td></td>
 	<td>(string) select</td>
+	<td></td>
 	<td>dropdown menu, requires 'values'</td>
 </tr>
 <tr>
 	<td>label</td>
 	<td>(string)</td>
+	<td>null</td>
 	<td>String used for the label</td>
 </tr>
 <tr>
 	<td>rules</td>
 	<td>(array)</td>
+	<td>empty array</td>
 	<td>Array with model rules, **not implemented yet**, use static Model::$rules meanwhile</td>
 </tr>
 <tr>
 	<td>onIndex</td>
 	<td>(bool)</td>
-	<td>Display column on the index view</td>
+	<td>false</td>
+	<td>Display column on the index view, default: false</td>
+</tr>
+<tr>
+	<td>editable</td>
+	<td>(bool)</td>
+	<td>true</td>
+	<td>Column can be editted, default: true</td>
 </tr>
 <tr>
 	<td>attributes</td>
 	<td>(array)</td>
+	<td>empty array</td>
 	<td>Array with attributes used in the formbuilder</td>
 </tr>
 <tr>
 	<td>values</td>
 	<td>(array)</td>
+	<td>empty array</td>
 	<td>Array with possible values for type 'radios' and 'select'</td>
 </tr>
 </table>

@@ -67,10 +67,11 @@ class BambooController extends \BaseController
 	 * @var array
 	 */
 	protected $defaultStructure = array(
-		 'type' 		=> 'string'
+		 'type' 		=> 'text'
 		,'label' 		=> null
 		,'rules' 		=> array() // @todo
 		,'onIndex' 		=> false
+		,'editable' 	=> true
 		,'attributes' 	=> array()
 		,'values' 		=> array()
 	);
@@ -231,6 +232,11 @@ class BambooController extends \BaseController
 	 */
 	public static function field($column, $structure)
 	{
+		if(false === $structure['editable'])
+		{
+			$structure['attributes'][' disabled'] = 'disabled';
+		}
+
 		$type = $structure['type'];
 		switch($type)
 		{
