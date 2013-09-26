@@ -77,12 +77,12 @@ The `getStructure` method in the Eloquent model must return an array of structur
 </tr>
 <tr>
 	<td>type</td>
-	<td>(string) string, email, password</td>
+	<td>(string) text, email, password, hidden</td>
 	<td>single line text input</td>
 </tr>
 <tr>
 	<td></td>
-	<td>(string) text, textarea</td>
+	<td>(string) textarea</td>
 	<td>textarea input</td>
 </tr>
 <tr>
@@ -155,6 +155,8 @@ Nope, Bamboo does not generate the controllers and views for each model but reus
 
 
 ### Changelog
+* 2013-09-26<br>
+removed type 'string' and swichted it with 'text' so the only way to render a textarea is the type 'textarea'.
 * 2013-09-25<br>
 added active class for the nav-tabs on the index view<br>
 added overwrites for orderByColumn (default: table key) and orderByDirection (default: asc)
