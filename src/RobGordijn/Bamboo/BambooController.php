@@ -45,6 +45,12 @@ class BambooController extends \BaseController
 	protected $Model;
 
 	/**
+	 * Storage of current Eloquent model keyName
+	 * @var string
+	 */
+	protected $modelKeyName;
+
+	/**
 	 * Storage for current route name.
 	 * @var string
 	 */
@@ -92,11 +98,9 @@ class BambooController extends \BaseController
 	 */
 	public function index()
 	{
-		$columns 			= $this->getIndexColumns();
-		$orderByColumn 		= empty($this->orderByColumn) ? $this->Model->getKeyName() : $this->orderByColumn;
-		$orderByDirection 	= $this->orderByDirection;
-		$records 			= $this->Model->orderBy($orderByColumn, $orderByDirection)->paginate($this->recordsPerPage);
-		$links 				= $records->links();
+		$columns 	= $this->getIndexColumns();
+		$records 	= $this->retrieveRecords();
+		$links 		= $records->links();
 
 		return $this->makeView('index', array(
 			 'columns' 	=> $columns
@@ -262,6 +266,35 @@ class BambooController extends \BaseController
 		}
 	}
 
+	protected function retrieveRecords()
+	{
+		return $this->Model
+			->orderBy(
+				 $this->getOrderByColumn()
+				,$this->getOrderByDirection())
+			->paginate($this->recordsPerPage);
+	}
+
+	public function getOrderByColumn()
+	{
+		return empty($this->orderByColumn) ? $this->modelKeyName : $this->orderByColumn;
+	}
+
+	public function setOrderByColumn($column)
+	{
+		$this->orderByColumn = $$column;
+	}
+
+	public function getOrderByDirection()
+	{
+		return $this->orderByDirection;
+	}
+
+	public function setOrderByDirection($direction)
+	{
+		$this->orderByDirection = $direction;
+	}
+
 	/**
 	 * Returns the current Eloquent model
 	 *
@@ -281,6 +314,7 @@ class BambooController extends \BaseController
 	protected function setModel($Model)
 	{
 		$this->Model = $Model;
+		$this->modelKeyName = $Model->getKeyName();
 	}
 
 	/**
