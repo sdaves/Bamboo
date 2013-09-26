@@ -234,7 +234,7 @@ class BambooController extends \BaseController
 	{
 		if(false === $structure['editable'])
 		{
-			$structure['attributes'][' disabled'] = 'disabled';
+			$structure['attributes']['readonly'] = 'readonly';
 		}
 
 		$type = $structure['type'];
