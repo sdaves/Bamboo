@@ -6,7 +6,7 @@ Bamboo is a package for Laravel version 4 that enables scaffolding for Eloquent 
 ### Installation
 * Add `"RobGordijn/Bamboo": "dev-master"` to the require section in `composer.json`.
 
-* Run `php composer.php update` on the CLI.
+* Run `php composer update` on the CLI.
 
 * Add `'RobGordijn\Bamboo\BambooServiceProvider'` to the providers array in `app/config/app.php`.
 * In the `controllers` directory, create a new controller that extends the BambooController and provides an Eloquent model in the constructor.
@@ -17,6 +17,14 @@ use RobGordijn\Bamboo\BambooController;
 
 class BlogController extends BambooController
 {
+	protected $table = 'blogs';
+	protected $fillable = array('title', 'content');
+
+	public static $rules = array(
+		 'title' 	=> array('required')
+		,'content' 	=> array('required')
+	);
+
 	public function __construct(Blog $Model)
 	{
 		parent::__construct($Model);
@@ -66,6 +74,8 @@ Please keep in mind that the Laravel Eloquent model attributes are well protecte
 
 Hint: `protected $fillable = array('column1', 'column2');` or inversed like `protected $guarded = array();`
 
+I advice you to use the first option.
+
 ### Structure options
 The `getStructure` method in the Eloquent model must return an array of structures. The keys are the names of your table columns. The structure has the following options:
 
@@ -110,7 +120,7 @@ The `getStructure` method in the Eloquent model must return an array of structur
 	<td>rules</td>
 	<td>(array)</td>
 	<td>empty array</td>
-	<td>Array with model rules, **not implemented yet**, use static Model::$rules meanwhile</td>
+	<td>Array with model rules, <b>not implemented yet</b>, use static Model::$rules meanwhile</td>
 </tr>
 <tr>
 	<td>onIndex</td>
@@ -141,14 +151,22 @@ The `getStructure` method in the Eloquent model must return an array of structur
 ### Controller options
 **Records per page (index view)**
 
-Default: 10, specify the protected `recordsPerPage` property in the resource controller to overwrite.
+Default: 10, specify the protected `recordsPerPage` property in the resource controller to overwrite:
+
+`protected $recordsPerPage = 25;`
 
 **Ordering records on the index view**
-Default: 'Model->getKeyName() asc', specify the protected `orderByColumn` and `orderByDirection` in the resource controller to overwrite.
+Default: `Model->getKeyName() asc`, specify the protected `orderByColumn` and `orderByDirection` in the resource controller to overwrite.
+
+`protected $orderByColumn = 'title';`
+
+`protected $orderByDirection = 'desc';`
 
 **Blade layout** 
 
 Every view uses a Blade layout to render. A default layout is shipped with Bamboo and uses  Bootstrap classes to look nice. Specify the protected `bladeLayout` property in the resource controller to overwrite.
+
+`protected $bladeLayout = 'layouts/master';`
 
 ### Translations
 
