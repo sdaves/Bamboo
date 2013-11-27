@@ -17,14 +17,6 @@ use RobGordijn\Bamboo\BambooController;
 
 class BlogController extends BambooController
 {
-	protected $table = 'blogs';
-	protected $fillable = array('title', 'content');
-
-	public static $rules = array(
-		 'title' 	=> array('required')
-		,'content' 	=> array('required')
-	);
-
 	public function __construct(Blog $Model)
 	{
 		parent::__construct($Model);
@@ -52,6 +44,15 @@ Route::group(array('prefix' => 'admin'), function()
 <?php
 class Blog extends Eloquent
 {
+	protected $table = 'blogs';
+
+	protected $fillable = array('title', 'content');
+
+	public static $rules = array(
+		 'title' 	=> array('required')
+		,'content' 	=> array('required')
+	);
+
 	public function getStructure()
 	{
 		$title = array(
